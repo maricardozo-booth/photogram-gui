@@ -42,9 +42,6 @@
 <dd>
   </dd>
 
-  <dt>
-    Delete photo
-  </dt>
   <dd>
     <a href="/delete_photo/<%= @the_photo.id%>">
       Delete this photo
@@ -70,13 +67,6 @@
     </th>
   </tr>
 
-<% matching_comments.each do |a_comment| %>
-<tr>
-<td><%= a_comment.commenter.id %></td>
-
-<td><%= a_comment.body %></td>
-
-<td><%= a_comment.created_at %></td>
 </tr>
 </table>
 
