@@ -19,7 +19,7 @@ class PhotoController < ApplicationController
 
     if @new_photo.valid?
       @new_photo.save
-      redirect_to("/photos", { :notice => "Photo created successfully." })
+      redirect_to("/photos/#{@the_photo.id}", { :notice => "Photo created successfully." })
     else
       redirect_to("/photos", { :notice => "Photo failed to create successfully." })
     end
@@ -38,5 +38,28 @@ class PhotoController < ApplicationController
     else
       redirect_to("/photos/#{@the_photo.id}", { :alert => "Photo failed to update successfully." })
     end
+  end
+
+  def destroy
+    the_id = params.fetch("path_id")
+    @the_photo = Photo.where({ :id => the_id }).at(0)
+
+    @the_photo.destroy
+
+    redirect_to("/photos", { :notice => "Photo deleted successfully."} )
+  end
+
+  def comment
+
+    @new_comment = Comment.new
+    @new_comment.photo_id = params.fetch("input_photo_id")
+    @new_comment.body = params.fetch("input_comment")
+    @new_comment.author_id = params.fetch("input_author_id")
+
+    @new_comment.save
+
+    the_id = params.fetch("input_photo_id")
+
+    redirect_to("/photos/#{the_id}", { :notice => "Commented successfully."} )
   end
 end

@@ -16,7 +16,7 @@ class UserController < ApplicationController
 
     if @new_user.valid?
       @new_user.save
-      redirect_to("/users", { :notice => "User created successfully." })
+      redirect_to("/users/#{@new_user.id}", { :notice => "User created successfully." })
     else
       redirect_to("/users", { :notice => "User failed to create successfully." })
     end
@@ -36,4 +36,12 @@ class UserController < ApplicationController
     end
   end
 
+  def destroy
+    the_id = params.fetch("path_id")
+    @the_user = User.where({ :id => the_id }).at(0)
+
+    @the_user.destroy
+
+    redirect_to("/users", { :notice => "User deleted successfully."} )
+  end
 end
