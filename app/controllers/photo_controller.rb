@@ -19,7 +19,7 @@ class PhotoController < ApplicationController
 
     if @new_photo.valid?
       @new_photo.save
-      redirect_to("/photos/#{@the_photo.id}", { :notice => "Photo created successfully." })
+      redirect_to("/photos/#{@new_photo.id}", { :notice => "Photo created successfully." })
     else
       redirect_to("/photos", { :notice => "Photo failed to create successfully." })
     end

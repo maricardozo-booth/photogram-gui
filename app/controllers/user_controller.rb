@@ -5,18 +5,20 @@ class UserController < ApplicationController
 
   def show
     the_id = params.fetch("path_id")
-    matching_records = User.where ({ :id => the_id })
+    matching_records = User.where ({ :username => the_id })
     @the_user = matching_records.at(0)
+    
     render({ :template => "user_templates/details"})
   end
 
   def insert
     @new_user = User.new
     @new_user.username = params.fetch("input_username")
+    @name = @new_user.username
 
     if @new_user.valid?
       @new_user.save
-      redirect_to("/users/#{@new_user.id}", { :notice => "User created successfully." })
+      redirect_to("/users/#{@name}", { :notice => "User created successfully." })
     else
       redirect_to("/users", { :notice => "User failed to create successfully." })
     end

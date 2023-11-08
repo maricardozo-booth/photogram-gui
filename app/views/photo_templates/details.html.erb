@@ -15,7 +15,7 @@
     <dl>
 
 <dt>Image</dt>
-<dd><img src"<%= @the_photo.image %>" widtht="200"></dd>
+<dd><img src="<%= @the_photo.image %>" width="200"></dd>
 
 <dt>Caption</dt>
 <dd><%= @the_photo.caption %></dd>
@@ -66,6 +66,16 @@
       Posted
     </th>
   </tr>
+<% matching_comments.each do |a_comment| %>
+<tr>
+<td>
+<%= a_comment.commenter.id %></td>
+
+<td>
+<%= a_comment.body %></td>
+
+<td>
+<%= a_comment.created_at %></td>
 
 </tr>
 </table>
