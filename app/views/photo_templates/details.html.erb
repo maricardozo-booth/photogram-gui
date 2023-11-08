@@ -52,6 +52,8 @@
 
 <% matching_comments = Comment.where({ :photo_id => @the_photo.id }) %>
 
+<h2>Comments</h2>
+
 <table>
   <tr>
     <th>
@@ -69,17 +71,17 @@
 <% matching_comments.each do |a_comment| %>
 <tr>
 <td>
-<%= a_comment.commenter.id %></td>
+<%= a_comment.commenter.username %></td>
 
 <td>
 <%= a_comment.body %></td>
 
 <td>
 <%= a_comment.created_at %></td>
-
 </tr>
-</table>
+<% end %>
 
+</table>
 
 <h3>Add a new comment</h3>
 

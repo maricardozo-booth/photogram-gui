@@ -26,21 +26,21 @@ class UserController < ApplicationController
 
   def update
     the_id = params.fetch("path_id")
-    @the_user = User.where({ :id => the_id }).at(0)
+    @the_user = User.where({ :username => the_id }).at(0)
 
     @the_user.username = params.fetch("input_username")
 
     if @the_user.valid?
       @the_user.save
-      redirect_to("/users/#{@the_user.id}", { :notice => "User updated successfully."} )
+      redirect_to("/users/#{@the_user.username}", { :notice => "User updated successfully."} )
     else
-      redirect_to("/users/#{@the_user.id}", { :alert => "User failed to update successfully." })
+      redirect_to("/users/#{@the_user.username}", { :alert => "User failed to update successfully." })
     end
   end
 
   def destroy
     the_id = params.fetch("path_id")
-    @the_user = User.where({ :id => the_id }).at(0)
+    @the_user = User.where({ :username => the_id }).at(0)
 
     @the_user.destroy
 
